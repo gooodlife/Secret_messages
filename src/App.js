@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
+import  "bootstrap/dist/css/bootstrap.min.css";
+import Nav from "./components/Nav";
+import Home  from "./components/Home";
+import Profile from "./components/Profile";
+import About from "./components/About";
+import Default from "./components/Default";
+import Footer from "./components/Footer";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/Login";
+import './mysass.scss';
+import { BrowserRouter as Router,Switch, Route, Link
+} from "react-router-dom";
+
+
+
+export default class App extends Component {
+
+  // onSubmit = fields =>{
+  //   console.log("app comp got: ",fields);
+  // };
+
+
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+    <Router>
+      <div>
+      
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Nav/>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/profile">
+            <Profile  />
+          </Route>
+          <Route path="/SignIn" component={SignIn} />
+          
+          <Route path="/SignUp" component={SignUp} 
+          />
+         
+          <Route path="/"> <Home />
+
+  
+          </Route>
+        </Switch>
+
+        <Footer/>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+
+    
+     
+ 
+ 
+  </React.Fragment>
+
+    )
+  }
+}

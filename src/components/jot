@@ -1,0 +1,104 @@
+import React, { Component } from "react";
+import {Formik} from "formik";
+import * as EmailValidator from "email-validator";
+import * as yup from "yup";
+
+const SignIn =()=>(
+
+ <Formik
+ initialValues={{email: "",password:""}}
+ onSubmit ={( values,{setSubmitting}) =>{
+console.log ("submitting")
+ }}
+ validationSchema ={
+     yup.object().shape({
+         email:yup.string()
+         .email()
+         .required("Required")
+         .min(8, "password is too short-should be 8 cahracters min")
+
+     })
+ }
+//  validate ={
+//      values =>{
+//         let errors={} ;
+//         if (!values.email){
+//             errors.email="Required";
+//         }
+//         else if (!EmailValidator.validate(values.email)){
+//             errors.email = "Invalid Email Adress"
+//         }
+
+//         if (!values.password){
+//             errors.password="Required";
+//         }
+//         else if (values.password.length<8){
+//             errors.password = "password must be 8 characters long"
+//         }
+//         return errors;
+//      }
+//  }
+>
+    {
+        props =>{
+            const{
+                values,
+                touched,
+                errors,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit
+            } = props;
+            return(
+                <form onSubmit={handleSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur = {handleBlur}
+                  className = {errors.email && touched.email && "error"}
+                />
+                     {errors.email && touched.email && (
+                    <div className="input-feedback">
+                        {errors.email}
+                    </div>
+                )
+                }
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur = {handleBlur}
+                  className = {errors.email && touched.email && "error"}
+              
+                />
+                {errors.password && touched.password && (
+                    <div className="input-feedback">
+                        {errors.password}
+                    </div>
+                )
+                }
+      
+                <button type="submit" disabled={isSubmitting}>Login</button>
+              </form>
+            );
+        }
+    }
+
+ </Formik>
+
+);
+
+https://thumbs.dreamstime.com/b/horror-background-grim-reaper-scary-forest-night-abstract-illustration-horror-background-scary-ghost-forest-162356511.jpg
+https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhBv5vW6v29LFoo6SwtlyapSIdjO16ey5ELRXeYdKXhDrqNdlB&usqp=CAU
+export default SignIn;
+https://live.staticflickr.com/1438/4611728290_f2675e02fa_n.jpg
+https://i.pinimg.com/originals/63/89/2c/63892c10895a851ea895040c8b93033c.jpg
+https://docs.google.com/a/descriptionari.com/uc?id=0BzbGICscfANOM0pQd2NYU05DS2c
+https://cdn.shopify.com/s/files/1/2123/8425/products/89255898-LRG_055f11fb-f616-406a-839d-1e0683daa0eb_530x.jpg?v=1578675625
+https://readdurhamenglish.files.wordpress.com/2016/03/rigormortis2.jpg?w=881
