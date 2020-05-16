@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 import { Router,Link} from 'react-router-dom';
 async function postData(url = '', data = {}) {
@@ -82,11 +82,11 @@ validate = () =>{
             password:"",  
         });
  
-        postData('http://localhost:8000', { ...this.state })
+        postData("http://"+window.location.host.split(":")[0]+":8000", { ...this.state })
         .then(data => {
           
           
-            localStorage.setItem("user", JSON.stringify(data)) ;
+         localStorage.setItem("user", JSON.stringify(data)) ;
            
     alert("you signed up sucessfully") 
                 this.setState({
@@ -112,12 +112,12 @@ validate = () =>{
         return <Redirect to='/profile' />
     } 
        return(
-           <div className= "container-fluid top_modal bg-dark ">
-           <div className="container-fluid ">
+           <div className= "container-fluid  ">
+           <div className="container-fluid  ">
         <Link to ="/signUp"><button type="button"className="btn bg-secondary">sign up</button> </Link>
         <Link to ="/signIn"><button type="button"className ="btn bg-secondary">Sign in</button></Link>
         </div> 
-        <div className="container lower_modal ">
+        <div className="container-fluid lower_modal ">
            
            <h4>Never tell anyone your anonymus name</h4>
            <br/>

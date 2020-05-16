@@ -1,4 +1,6 @@
-import React, { Component, Profiler } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router-dom'
+
 async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -18,15 +20,30 @@ async function postData(url = '', data = {}) {
   }
 
  
-function Profile (props)  { 
-  let state = {comment:"wertyuiop"};
+  function Profile (props)  { 
+  let state = {comment:""};
+
+  let user = JSON.parse(localStorage.getItem("user"));
 
   let onSubmit = e => {
     e.preventDefault();
-    postData('http://localhost:8000/comment', state
-  );
-  console.log(postData);
+
+    postData("http://"+window.location.host.split(":")[0]+":8000/comment", state
+  ).then((data) => {
+    let comments = JSON.parse(localStorage.getItem("comments"));
+    if (!comments) comments = []
+    comments.push(data.comment);
+    localStorage.setItem ("comments", JSON.stringify(comments));
+    // let comment = JSON.parse(localStorage.setItem("comments"))
+    localStorage.setItem('site',JSON.stringify('data'));
+  
+    // document.getElementById("resp").innerText = (data.comment);
+    document.getElementById("comment").value = ('');
+   
+  });
+
 }
+ 
 
 let handleChange= e => {
   state= {
@@ -34,23 +51,43 @@ let handleChange= e => {
   }
 }
 
-    return(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-        <div className="projects">
+  if (!user) {
+    return (
+      <Redirect to="/SignUp" />
+    )
+  }
 
-        {/* <h1>Hello {Localstorage.match.params.username}!</h1> */}
+    return(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        <div className="profile_modal container-fluid ">
+
+        <h1>Hello {user.anonymusname}!</h1>
 
         <form onSubmit={onSubmit}>
-              <h1 id="portfolio">portfolio</h1>
+              <h3 id="portfolio">Leave your annonymus messages or secrets down below!</h3>
               <input className="figure"
               name="comment"
+              id="comment"
               // value={state.comment}
               placeholder="drop your secret here"
               onChange={handleChange}
               />
 
-              <button type="submiit" className="btn bg-dark"
+              <button type="submiit" className="btn-btn  bg-dark"
       onClick= {(e)=>onSubmit(e)}>submit</button> 
+      
       </form>
+      <div className="container bg-dark"  id="resp">
+        <ul>
+          {
+        JSON.parse(localStorage.getItem("comments")).map(
+          comment => {
+            console.log(comment)
+            return <li className="comment">{comment}<button type ="reset" className="btn-btn bg-secondary">Delete</button></li>
+          }
+        )
+        }
+        </ul>
+      </div>
           </div>
     );
 

@@ -36,8 +36,7 @@ export default class App extends Component {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/profile">
-            <Profile  />
+          <Route path="/profile" component={Profile}>
           </Route>
           <Route path="/SignIn" component={SignIn} />
           

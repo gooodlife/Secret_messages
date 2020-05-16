@@ -80,7 +80,7 @@ export default class Login extends Component {
           .then(data => { 
            
             // check if data is empty
-            if (data.length ==0){
+            if (data.length === 0){
               // show an error message if empty,by updating the state
               this.setState({
                 errorMessage :"incorrect username or password"
@@ -110,11 +110,11 @@ export default class Login extends Component {
       if (this.state.redirect) {
         return <Redirect to='/profile' />}
       return (
-        
-        <div container-fluid >
-              <Link to ="/signUp"><button type="button" className="btn bg-dark">sign up</button> </Link>
-          <br/>
-          <div container bg-danger second_modal>
+        <div>
+          <Link to ="/signUp"><button type="button" className="btn bg-dark">sign up</button> </Link>
+         
+        <div className=" mid_modal container-fluid "  >
+          
           <form onSubmit={this.onSubmit}>
             <input
               type="email"
@@ -142,6 +142,7 @@ export default class Login extends Component {
           </form>
         </div>
         </div>
+        
       );
     }
   }

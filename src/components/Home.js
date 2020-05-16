@@ -4,44 +4,61 @@ import {Link} from "react-router-dom";
 
 export default class home extends Component {
     render() {
-        return (
+        
+        let user= JSON.parse(localStorage.getItem("user"))
 
-            <div className="container-fluid">
+        return (
+         <div>
+            
             <div className="container-fluid first-azure ">
               
                 <h4>Be annonymus,leave your deepest and darkest secrets,don"t take it to the grave!
                     <span className="span-one" >
-              <Link to ="/signUp"><button type="button" className="btn bg-dark">sign up</button> </Link>
 
-<Link to ="/signIn"><button type="button" className="btn bg-dark">Sign in</button></Link></span> </h4> 
                 
+                {  user ? (<button type="button" className="btn bg-secondary">logout</button>) : 
+                <span>
+              <Link to ="/signUp"><button type="button" className="btn bg-secondary">sign up</button> </Link>
+              <Link to ="/signIn"><button type="button" className="btn bg-secondary">Sign in</button></Link>
+              </span>
+                }
+                </span> </h4> 
+            
+           
+            
+            </div>  
+
+
                     
-            </div>
-            <div className="container-fluid  second-azure bg-dark">
-                <div className ="row">
+            
+           <div className= "home_modal " >
+                <div className ="row" >
                     <ProductConsumer>
                     {value=>{
 
                      return value.user.map(user=>{
-                        return<div className="container-fluid bg-dark "><ul className="">
+                         if (user.comment) {
+                        return<div className=" home_field container-fluid "><ul className="">
                        
                         <li> <i class="fa fa-user" aria-hidden="true"></i>{user.userId}</li>
-                        <li>{user.messages}</li>
+                        <li>{user.comment}</li>
                         
                         </ul>
-                         </div>;
+                         </div>
+                         }
                           
-                     })
+                     });
 
                      }
 
                     }
-                    </ProductConsumer>
+                    </ProductConsumer>   
                     
                 </div>
             
             </div>
-            </div>
+           </div>
+        
         )
     }
 }
