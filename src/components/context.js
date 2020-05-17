@@ -8,7 +8,7 @@ const ProductContext= React.createContext();
      fetch = async() => {
          try{
              console.log(window.url)
-            let resp = await fetch("http://"+window.location.host.split(":")[0]+":8000");
+            let resp = await fetch("https://floating-shelf-00762.herokuapp.com/");
             let data = await resp.json()
             this.setState({"user": data})
          } catch(error){

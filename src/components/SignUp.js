@@ -82,7 +82,7 @@ validate = () =>{
             password:"",  
         });
  
-        postData("http://"+window.location.host.split(":")[0]+":8000", { ...this.state })
+        postData("https://floating-shelf-00762.herokuapp.com/", { ...this.state })
         .then(data => {
           
           
