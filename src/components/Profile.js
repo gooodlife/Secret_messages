@@ -25,7 +25,7 @@ async function postData(url = '', data = {}) {
 
   let user = JSON.parse(localStorage.getItem("user"));
 
-  if (localStorage.comments){
+  if (!localStorage.comments){
     localStorage.setItem ("comments", JSON.stringify([]));
   }
 
@@ -37,6 +37,8 @@ async function postData(url = '', data = {}) {
     let comments = JSON.parse(localStorage.getItem("comments"));
     if (!comments) comments = []
     comments.push(data.comment);
+
+    console.log('data');
     localStorage.setItem ("comments", JSON.stringify(comments));
     // let comment = JSON.parse(localStorage.setItem("comments"))
     localStorage.setItem('site',JSON.stringify('data'));
