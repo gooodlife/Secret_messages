@@ -25,14 +25,14 @@ async function postData(url = '', data = {}) {
 
   let user = JSON.parse(localStorage.getItem("user"));
 
-  if (!localStorage.comments){
+  if (localStorage.comments){
     localStorage.setItem ("comments", JSON.stringify([]));
   }
 
   let onSubmit = e => {
     e.preventDefault();
 
-    postData("https://floating-shelf-00762.herokuapp.com", state
+    postData("https://floating-shelf-00762.herokuapp.com/comment", state
   ).then((data) => {
     let comments = JSON.parse(localStorage.getItem("comments"));
     if (!comments) comments = []

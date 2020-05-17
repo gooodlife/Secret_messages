@@ -76,7 +76,7 @@ export default class Login extends Component {
 
           const {email} = this.state;
    
-          postData("https://floating-shelf-00762.herokuapp.com/", { ...this.state })
+          postData("https://floating-shelf-00762.herokuapp.com/login", { ...this.state })
           .then(data => { 
            
             // check if data is empty
