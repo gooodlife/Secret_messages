@@ -40,9 +40,9 @@ export default class home extends Component {
                          if (user.comment) {
                         return<div className=" home_field container-fluid "><ul className="">
                        
-                        <li> <i class="fa fa-user" aria-hidden="true"></i>{user.userId}</li>
+                        <li> <i class="fa fa-user" aria-hidden="true"></i>{user.anonymusname}</li>
                         <li>{user.comment}</li>
-                        
+                       
                         </ul>
                          </div>
                          }
