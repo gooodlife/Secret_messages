@@ -32,7 +32,7 @@ async function postData(url = '', data = {}) {
   let onSubmit = e => {
     e.preventDefault();
 
-    postData("http://"+window.location.host.split(":")[0]+":8000/comment", state
+    postData("https://floating-shelf-00762.herokuapp.com/", state
   ).then((data) => {
     let comments = JSON.parse(localStorage.getItem("comments"));
     if (!comments) comments = []
