@@ -25,6 +25,10 @@ async function postData(url = '', data = {}) {
 
   let user = JSON.parse(localStorage.getItem("user"));
 
+  if (!localStorage.comments){
+    localStorage.setItem ("comments", JSON.stringify([]));
+  }
+
   let onSubmit = e => {
     e.preventDefault();
 
